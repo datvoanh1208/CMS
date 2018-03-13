@@ -21,6 +21,11 @@ Route::get('/_debugbar/assets/javascript', [
     'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
 ]);
 
+Route::get('/_debugbar/clockwork/{id}', [
+    'as' => 'debugbar-clockwork',
+    'uses' => '\Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork'
+]);
+
 Route::get('/_debugbar/open', [
     'as' => 'debugbar-open',
     'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
@@ -31,3 +36,9 @@ Route::get('/', function (){
 //dd($o);
     return view('welcome');
 });
+
+
+Route::get('/test', [
+    'as' => 'test',
+    'uses' => 'TestController@index'
+]);
