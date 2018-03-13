@@ -12,7 +12,5 @@
 */
 
 Route::get('/', function (){
-    $o = \App\User::get();
-dd($o);
-    return view('welcome');
+    return view('index');
 });
