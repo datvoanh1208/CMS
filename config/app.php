@@ -181,7 +181,14 @@ return [
          * Modular
          */
         Nwidart\Modules\LaravelModulesServiceProvider::class,
-
+        /**
+         * MongoDB
+         */
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        /**
+         * Debugbar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -231,7 +238,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
