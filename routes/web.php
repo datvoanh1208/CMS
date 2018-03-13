@@ -11,6 +11,35 @@
 |
 */
 
+Route::get('/_debugbar/assets/stylesheets', [
+    'as' => 'debugbar-css',
+    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@css'
+]);
+
+Route::get('/_debugbar/assets/javascript', [
+    'as' => 'debugbar-js',
+    'uses' => '\Barryvdh\Debugbar\Controllers\AssetController@js'
+]);
+
+Route::get('/_debugbar/clockwork/{id}', [
+    'as' => 'debugbar-clockwork',
+    'uses' => '\Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork'
+]);
+
+Route::get('/_debugbar/open', [
+    'as' => 'debugbar-open',
+    'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
+]);
+
 Route::get('/', function (){
-    return view('index');
+
+//    $o = \App\User::get();
+//dd($o);
+    return view('welcome');
 });
+
+
+Route::get('/test', [
+    'as' => 'test',
+    'uses' => 'TestController@index'
+]);
