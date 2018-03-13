@@ -1,6 +1,11 @@
-@extends('admin::layouts.master')
-
+@extends('admin::v1/master')
+@section('title')
+    cms demo
+@endsection
 @section('content')
+
+
+
     <h1>Hello World</h1>
 
     <p>
