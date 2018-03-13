@@ -187,14 +187,14 @@
                         <!-- language-->
                         <li class="list-inline-item dropdown notification-list hide-phone">
                             <a class="nav-link dropdown-toggle arrow-none waves-effect text-white" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
-                                English <img src="assets/images/flags/us_flag.jpg" class="ml-2" height="16" alt=""/>
+                               aria-haspopup="false" aria-expanded="false"> {{ Config::get('languages')[App::getLocale()]['name'] }} <img src="{{ Config::get('languages')[App::getLocale()]['flag'] }}" class="ml-2" height="16" alt=""/>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right language-switch">
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/italy_flag.jpg" alt="" height="16"/><span> Italian </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/french_flag.jpg" alt="" height="16"/><span> French </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/spain_flag.jpg" alt="" height="16"/><span> Spanish </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/russia_flag.jpg" alt="" height="16"/><span> Russian </span></a>
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                        <a class="dropdown-item" href="{{ url('admin/lang/'.$lang) }}"><img src="{{ $language['flag'] }}" alt="" height="16"/><span>  {{ $language['name'] }} </span></a>
+                                    @endif
+                                @endforeach
                             </div>
                         </li>
                         <li class="list-inline-item dropdown notification-list">
