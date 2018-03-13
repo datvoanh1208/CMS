@@ -12,6 +12,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "mongodb/mongodb": "^1.2",
+        "nwidart/laravel-modules": "^2.7",
         "spatie/image-optimizer": "^1.0"
     },
     "require-dev": {
@@ -25,6 +26,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
+            "Modules\\": "Modules/",
             "Tests\\": "tests/"
         }
     },

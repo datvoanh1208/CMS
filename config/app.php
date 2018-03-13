@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://cms.pss'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -176,14 +176,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
         /**
-         * MongoDB
+         * Modular
          */
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
-        /**
-         * Debugbar
-         */
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
 
     ],
 
@@ -233,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Module' => Nwidart\Modules\Facades\Module::class,
 
     ],
 
