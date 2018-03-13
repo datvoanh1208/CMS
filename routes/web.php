@@ -32,6 +32,7 @@ Route::get('/_debugbar/open', [
 ]);
 
 Route::get('/', function (){
+
 //    $o = \App\User::get();
 //dd($o);
     return view('welcome');
