@@ -31,6 +31,8 @@ Route::get('/_debugbar/open', [
     'uses' => '\Barryvdh\Debugbar\Controllers\OpenController@handler'
 ]);
 
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@index']);
+
 Route::get('/', function (){
 
 //    $o = \App\User::get();
