@@ -3,8 +3,9 @@
 namespace Modules\Admin\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
-class AdminDatabaseSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +14,7 @@ class AdminDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call("Modules\Admin\Database\Seeders\UserTableSeeder");
-        $this->call("Modules\Admin\Database\Seeders\AdminTableSeeder");
+        Model::unguard();
+        factory('Modules\Admin\Entities\User',1000)->create();
     }
 }
