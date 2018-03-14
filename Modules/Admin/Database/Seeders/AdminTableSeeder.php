@@ -17,6 +17,7 @@ class AdminTableSeeder extends Seeder
         Model::unguard();
         factory('Modules\Admin\Entities\Admin')->create([
             'name' => 'root',
+            'username' => 'root',
             'email' => 'root@example.com',
             'password' => bcrypt('123456')
         ]);
