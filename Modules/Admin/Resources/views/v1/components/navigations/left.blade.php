@@ -6,7 +6,7 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="index.html" class="logo"><i class="mdi mdi-assistant"></i> Annex</a>
+            <a href="{{ url('/admin') }}" class="logo"><i class="mdi mdi-assistant"></i> Annex</a>
             <!-- <a href="index.html" class="logo"><img src="assets/images/logo.png" height="24" alt="logo"></a> -->
         </div>
     </div>
@@ -15,7 +15,7 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li>
-                    <a href="index.html" class="waves-effect">
+                    <a href="{{ url('/admin') }}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i>
                         <span> Dashboard <span class="badge badge-pill badge-primary float-right">7</span></span>
                     </a>
