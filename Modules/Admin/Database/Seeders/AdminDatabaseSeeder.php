@@ -13,7 +13,7 @@ class AdminDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call("Modules\Admin\Database\Seeders\UserTableSeeder");
         $this->call("Modules\Admin\Database\Seeders\AdminTableSeeder");
+        $this->call("Modules\Admin\Database\Seeders\UserTableSeeder");
     }
 }
