@@ -12,6 +12,9 @@
         <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+        <!--begin::Custom Css -->
+        @yield('custom-css')
+        <!--end::Custom Css -->
     </head>
     <body class="fixed-left">
         <!-- Begin page -->
@@ -33,5 +36,15 @@
         <script src="{{ URL::asset('assets/js/jquery.scrollTo.min.js') }}"></script>
         <!-- App js -->
         <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+        <!-- Parsley js -->
+        <script type="text/javascript" src="{{ url('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('form').parsley();
+            });
+        </script>
+        <!--begin::Custom Js -->
+        @yield('custom-js')
+        <!--end::Custom Js -->
     </body>
 </html>

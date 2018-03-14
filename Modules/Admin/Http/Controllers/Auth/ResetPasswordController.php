@@ -40,17 +40,13 @@ class ResetPasswordController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRecoverpwForm()
+    public function showResetPasswordForm()
     {
-        return view('admin::v1.public.recoverpw')->with('status', 'New book was added');
+        return view('admin::v1.public.reset-password')->with('status', 'New book was added');
     }
 
-    protected function forgotPassword(array $data)
+    protected function resetPassword()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return view('admin::v1.public.reset-password')->with('status', 'New book was added');
     }
 }
