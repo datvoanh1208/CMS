@@ -33,15 +33,15 @@ Route::get('/_debugbar/open', [
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@index']);
 
-Route::get('/', function (){
-
-//    $o = \App\User::get();
-//dd($o);
-    return view('index');
-});
-
-
 Route::get('/test', [
     'as' => 'test',
     'uses' => 'TestController@index'
 ]);
+
+
+//-------
+
+Route::get('/', 'ProductController@getProduct');
+Route::get('/showCart', 'ProductController@showShopCart');
+Route::post('/addCart', 'ProductController@xhrAddCart');
+Route::post('/removeCart', 'ProductController@xhrRemoveCart');

@@ -156,7 +156,7 @@
                                     </ul>
                                     <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span> </p>
                                     <div class="clearfix"></div>
-                                    <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
+                                    <div class="mt-20"> <a href="{{ URL::to('/showCart') }}" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
                                 </div>
                             </li>
                             <li class="side-toggle">
