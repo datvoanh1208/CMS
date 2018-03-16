@@ -3,7 +3,6 @@
 namespace Modules\Admin\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginUserRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Modules\Admin\Entities\Admin;
@@ -30,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = 'admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -39,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('admin_guest')->except('logout');
     }
 
     /**
@@ -47,7 +46,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin::v1.public.login')->with('status', 'New book was added');
+        return view('admin::v1.public.login');
     }
 
     /**
@@ -56,22 +55,22 @@ class LoginController extends Controller
      */
     public function login(LoginAdminRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:255'
-        ]);
-        $oAdmin = new Admin();
-        $authAdmin = $oAdmin->getAuthention($request->email);
-        if (isset($authAdmin)) {
-            if (Auth::attempt([Admin::ADMIN__EMAIL => $request->email, Admin::ADMIN_PASSWORD => $request->password])) {
-                return 'successfully';
-            }
+        $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([$field => $request->input('login')]);
+        if (Auth::guard('admin')->attempt([$field => $request->input('login') , 'password' => $request->input('password')],$request->has('remember')))
+        {
+            return redirect('/admin/dashboard');
         }
-        return 'fail';
+        return redirect('/admin/login')->withErrors([
+            'error' => 'These credentials do not match our records.',
+        ]);
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function logout(){
-        auth()->guard()->logout();
-        return redirect('/login');
+        Auth::guard('admin')->logout();
+        return redirect('admin/login');
     }
 }

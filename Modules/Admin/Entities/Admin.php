@@ -3,9 +3,20 @@
 namespace Modules\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Modules\Admin\Notifications\AdminResetPasswordNotification;
 
-class Admin extends Model
+class Admin extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+    use Authenticatable, Authorizable, CanResetPassword;
+    use Notifiable;
+
     protected $table = 'admin';
 
     const ADMIN_ID = 'id';
@@ -42,4 +53,13 @@ class Admin extends Model
     protected $guarded = [
         self::ADMIN_ID
     ];
+
+    /**
+     * Send password reset notification
+     * @param string $token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
+    }
 }

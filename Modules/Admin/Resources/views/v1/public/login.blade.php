@@ -7,22 +7,39 @@
             <a href="{{ url('/admin') }}" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo.png') }}" height="24" alt="logo"></a>
         </h3>
         <div class="p-3">
-            <form class="form-horizontal m-t-20" action="">
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+            <form class="form-horizontal m-t-20" action="" method="POST">
                 {!! csrf_field() !!}
-                <div class="form-group row">
+                <div class="form-group row{{ $errors->has('login') ? ' parsley-error' : '' }}">
                     <div class="col-12">
-                        <input class="form-control" type="text" required="" placeholder="Username">
+                        <input class="form-control" type="text" name="login" value="{{ old('login') }}" required="" placeholder="Username or Email">
+                        @if ($errors->has('login'))
+                            <ul class="parsley-errors-list filled">
+                                <li class="parsley-required">{{ $errors->first('login') }}</li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row{{ $errors->has('password') ? ' parsley-error' : '' }}">
                     <div class="col-12">
-                        <input class="form-control" type="password" required="" placeholder="Password">
+                        <input class="form-control" type="password" name="password" required="" placeholder="Password">
+                        @if ($errors->has('password'))
+                            <ul class="parsley-errors-list filled">
+                                <li class="parsley-required">{{ $errors->first('password') }}</li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-12">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember" {{ old('remember') ? 'checked' : ''}}>
                             <label class="custom-control-label" for="customCheck1">Remember me</label>
                         </div>
                     </div>
