@@ -323,7 +323,7 @@ $(function() {
   /*Select Menu Js Start*/
   function option_drop() {
     $( ".option-drop" ).selectmenu();
-    return false;
+    return true;
   }
   /*Select Menu Js Ends*/
 
