@@ -8,7 +8,6 @@ use Cart;
 
 class ProductController extends Controller
 {
-    protected $_qty = [1,2,3,4,5,6,7,8,9,10];
 
     public function getProduct()
     {
@@ -17,7 +16,7 @@ class ProductController extends Controller
 
     public function showShopCart()
     {
-        return view('cart', ['Carts' => Cart::content(), 'qty' => $this->_qty]);
+        return view('cart', ['Carts' => Cart::content(), 'qty' => [1,2,3,4,5,6], 'totalPrice' => Cart::total()]);
     }
 
     public function xhrAddCart(Request $request)
@@ -38,6 +37,27 @@ class ProductController extends Controller
             $rowId = $request->input('rowId');
             Cart::remove($rowId);
             return [ 'rowId' => $rowId];
+        }
+    }
+
+    public function xhrUpdateCart(Request $request)
+    {
+        if($request->ajax()) {
+            $status = [];
+            $cart = Cart::update($request->input('rowId'), $request->input('qty'));
+
+            if($cart) {
+
+                $status['message']  = 'Update shoping cart success !';
+                $status['isUpdate'] = true;
+                $status['total']    = Cart::total();
+                return $status;
+            }
+
+            $status['message']  = 'Update shoping cart failed !';
+            $status['isUpdate'] = false;
+
+            return $status;
         }
     }
 

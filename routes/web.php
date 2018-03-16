@@ -45,3 +45,4 @@ Route::get('/', 'ProductController@getProduct');
 Route::get('/showCart', 'ProductController@showShopCart');
 Route::post('/addCart', 'ProductController@xhrAddCart');
 Route::post('/removeCart', 'ProductController@xhrRemoveCart');
+Route::post('/updateCart', 'ProductController@xhrUpdateCart');
