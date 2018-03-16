@@ -36,12 +36,7 @@ class ForgotPasswordController extends Controller
      */
     public function showForgotPasswordForm()
     {
-        return view('admin::v1.public.forgot-password')->with('status', 'New book was added');
-    }
-
-    protected function forgotPassword()
-    {
-        return view('admin::v1.public.forgot-password')->with('status', 'New book was added');
+        return view('admin::v1.public.forgot-password');
     }
 
     /**
@@ -51,6 +46,6 @@ class ForgotPasswordController extends Controller
      */
     protected function broker()
     {
-        return Password::broker('name');
+        return Password::broker('admin');
     }
 }

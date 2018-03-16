@@ -7,11 +7,19 @@
             <a href="{{ url('/admin') }}" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo.png') }}" height="24" alt="logo"></a>
         </h3>
         <div class="p-3">
-            <form class="form-horizontal" action="" method="POST">
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+            <form class="form-horizontal" action="{{ url('/admin/reset-password/reset') }}" method="POST">
                 {!! csrf_field() !!}
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group{{ $errors->has('email') ? ' parsley-error' : '' }}">
                     <div class="col-xs-12">
-                        <input class="form-control" type="email" name="email" required="" placeholder="Email">
+                        <input class="form-control" type="email" name="email" required="" placeholder="Email" value="{{ $email or old('email') }}" autofocus>
                         @if ($errors->has('email'))
                             <ul class="parsley-errors-list filled">
                                 <li class="parsley-required">{{ $errors->first('email') }}</li>
@@ -24,7 +32,7 @@
                         <input class="form-control" id="password" type="password" name="password" required="" placeholder="Password">
                         @if ($errors->has('password'))
                             <ul class="parsley-errors-list filled">
-                                <li class="parsley-required">{{ $errors->first('email') }}</li>
+                                <li class="parsley-required">{{ $errors->first('password') }}</li>
                             </ul>
                         @endif
                     </div>
@@ -34,7 +42,7 @@
                         <input class="form-control" data-parsley-equalto="#password" type="password" name="password_confirmation" required="" placeholder="Confirm Password">
                         @if ($errors->has('password_confirmation'))
                             <ul class="parsley-errors-list filled">
-                                <li class="parsley-required">{{ $errors->first('email') }}</li>
+                                <li class="parsley-required">{{ $errors->first('password_confirmation') }}</li>
                             </ul>
                         @endif
                     </div>

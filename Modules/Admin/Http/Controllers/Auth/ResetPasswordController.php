@@ -2,11 +2,21 @@
 
 namespace Modules\Admin\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
+    /**
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    protected $redirectTo = 'admin/dashboard';
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -17,36 +27,31 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
 
     /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    /**
+     * @param Request $request
+     * @param null $token
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showResetPasswordForm()
+    public function showResetPasswordForm(Request $request, $token = null)
     {
-        return view('admin::v1.public.reset-password')->with('status', 'New book was added');
+        return view('admin::v1.public.reset-password')->with( ['token' => $token, 'email' => $request->input('email')]);
     }
 
-    protected function resetPassword()
+    /**
+     * @return mixed
+     */
+    public function broker()
     {
-        return view('admin::v1.public.reset-password')->with('status', 'New book was added');
+        return Password::broker('admin');
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

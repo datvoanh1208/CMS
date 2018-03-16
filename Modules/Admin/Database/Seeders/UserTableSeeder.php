@@ -15,6 +15,6 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        factory('Modules\Admin\Entities\User',1000)->create();
+        factory('Modules\Admin\Entities\User',10000)->create();
     }
 }

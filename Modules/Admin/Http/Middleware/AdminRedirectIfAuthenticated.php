@@ -11,7 +11,7 @@ namespace Modules\Admin\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AuthAdmin
+class AdminRedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -22,12 +22,8 @@ class AuthAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect('admin/login');
-            }
+        if (Auth::guard('admin')->check()) {
+            return redirect('admin/dashboard');
         }
         return $next($request);
     }

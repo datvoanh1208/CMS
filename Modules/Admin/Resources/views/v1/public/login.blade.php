@@ -7,14 +7,21 @@
             <a href="{{ url('/admin') }}" class="logo logo-admin"><img src="{{ URL::asset('assets/images/logo.png') }}" height="24" alt="logo"></a>
         </h3>
         <div class="p-3">
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
             <form class="form-horizontal m-t-20" action="" method="POST">
                 {!! csrf_field() !!}
-                <div class="form-group row{{ $errors->has('username') ? ' parsley-error' : '' }}">
+                <div class="form-group row{{ $errors->has('login') ? ' parsley-error' : '' }}">
                     <div class="col-12">
-                        <input class="form-control" type="text" name="username" required="" placeholder="Username">
-                        @if ($errors->has('username'))
+                        <input class="form-control" type="text" name="login" value="{{ old('login') }}" required="" placeholder="Username or Email">
+                        @if ($errors->has('login'))
                             <ul class="parsley-errors-list filled">
-                                <li class="parsley-required">{{ $errors->first('username') }}</li>
+                                <li class="parsley-required">{{ $errors->first('login') }}</li>
                             </ul>
                         @endif
                     </div>
@@ -32,7 +39,7 @@
                 <div class="form-group row">
                     <div class="col-12">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember" {{ old('remember') ? 'checked' : ''}}>
                             <label class="custom-control-label" for="customCheck1">Remember me</label>
                         </div>
                     </div>
