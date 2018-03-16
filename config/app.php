@@ -189,6 +189,10 @@ return [
          * Debugbar
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        /*
+         * Shopping cart
+         */
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
     ],
 
     /*
@@ -239,6 +243,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
 
 ];
