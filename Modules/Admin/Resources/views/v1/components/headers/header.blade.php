@@ -8,12 +8,12 @@
             <li class="list-inline-item dropdown notification-list hide-phone">
                 <a class="nav-link dropdown-toggle arrow-none waves-effect text-white" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
-                    {{ Config::get('languages')[App::getLocale()]['name'] }} <img src="{{ Config::get('languages')[App::getLocale()]['flag'] }}" class="ml-2" height="16" alt=""/>
+                    {{ Config::get('languages')[App::getLocale()]['name'] }} <img src="{{ URL::asset(Config::get('languages')[App::getLocale()]['flag']) }}" class="ml-2" height="16" alt=""/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right language-switch">
                     @foreach (Config::get('languages') as $lang => $language)
                           @if ($lang != App::getLocale())
-                              <a class="dropdown-item" href="{{ url('admin/lang/'.$lang) }}"><img src="{{ $language['flag'] }}" alt="" height="16"/><span>  {{ $language['name'] }} </span></a>
+                              <a class="dropdown-item" href="{{ url('admin/lang/'.$lang) }}"><img src="{{ URL::asset($language['flag']) }}" alt="" height="16"/><span>  {{ $language['name'] }} </span></a>
                           @endif
                    @endforeach
                 </div>
@@ -32,19 +32,19 @@
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
+                        <div class="notify-icon"><img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                         <p class="notify-details"><b>Charles M. Jones</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
+                        <div class="notify-icon"><img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                         <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You have 87 unread messages</small></p>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
+                        <div class="notify-icon"><img src="{{ URL::asset('assets/images/users/avatar-4.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                         <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a long established fact that a reader will</small></p>
                     </a>
 
@@ -97,7 +97,7 @@
             <li class="list-inline-item dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                    <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" alt="user" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
@@ -109,7 +109,7 @@
                     <a class="dropdown-item" href="#"><span class="badge badge-success float-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+                    <a class="dropdown-item" href="{{ url('logout') }}"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
                 </div>
             </li>
 
